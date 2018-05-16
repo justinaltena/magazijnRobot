@@ -22,7 +22,7 @@ public class Bin {
     }
 
     public void addProduct(Product product) {
-        if (product.getProductSize() < this.getAvailableSize()) {
+        if (product.getProductSize() <= this.getAvailableSize()) {
             products.add(product);
         } else {
             System.out.println("Bin is full");
@@ -54,6 +54,11 @@ public class Bin {
         } else {
             return this.binSize;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Bin{" + "binSize=" + binSize + " Free space:" + this.getAvailableSize() + ", products=" + products + '}';
     }
 
 }

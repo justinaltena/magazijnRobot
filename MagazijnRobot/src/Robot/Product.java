@@ -24,6 +24,10 @@ public class Product {
 
     }
 
+    public Product(Point productPosition) {
+        this.productPosition = productPosition;
+    }
+
     @Override
     public String toString() {
         return "Product{" + "productName=" + productName + ", productSize=" + productSize + ", productPosition=" + productPosition + '}';
