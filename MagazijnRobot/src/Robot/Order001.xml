@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<order>
+    <customer_info>
+        <customer_id>
+            0123456
+        </customer_id>
+    </customer_info>
+    <order_info>
+        <order_id>
+            001
+        </order_id>
+        <order_date>
+            12-05-2018
+        </order_date>
+        <product>
+            <product_id>
+                45
+            </product_id>
+        </product>
+        <product>
+            <product_id>
+                38
+            </product_id>
+        </product>
+    </order_info>
+      
+</order>
