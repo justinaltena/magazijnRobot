@@ -1,11 +1,9 @@
-
 package Robot;
 
 import java.awt.Point;
 
-
 public class Product {
-    
+
     private int product_id;
     private String product_name;
     private int product_size;
@@ -19,7 +17,7 @@ public class Product {
     }
 
     public Product(Point productPosition) {
-        this.productPosition = productPosition;
+        this.product_position = productPosition;
     }
 
     @Override
