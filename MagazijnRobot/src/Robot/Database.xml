@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<storehouse>
+    <product>
+        <product_id>
+            45
+        </product_id>
+        <coordinates>
+            <x>2</x>
+            <y>3</y>
+        </coordinates>
+    </product>
+    <product>
+        <product_id>
+            38
+        </product_id>
+        <coordinates>
+            <x>5</x>
+            <y>3</y>
+        </coordinates>
+    </product>
+</storehouse>
