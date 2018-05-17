@@ -1,9 +1,7 @@
-
 package Robot;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-
 
 public class Order {
 
@@ -18,4 +16,10 @@ public class Order {
         this.order_date = order_date;
         this.products = products;
     }
+
+    @Override
+    public String toString() {
+        return "Order{" + "customer_id=" + customer_id + ", order_id=" + order_id + ", order_date=" + order_date + ", products=" + products + '}';
+    }
+
 }
