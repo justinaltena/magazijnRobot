@@ -31,11 +31,15 @@ public class RobotStart {
         Product p3 = new Product("test2", 3, point3);
         Product p4 = new Product("test2", 1, point4);
         Product p5 = new Product("test2", 5, point5);
+        Product p6 = new Product("test3", 6, point5);
+        Product p7 = new Product("test4", 3, point5);
         products.add(p1);
         products.add(p2);
         products.add(p3);
         products.add(p4);
         products.add(p5);
+        products.add(p6);
+        products.add(p7);
 //        Bin bin1 = new Bin(5);
 //        System.out.println(bin1.getAvailableSize());
 //        bin1.addProduct(p1);
@@ -45,7 +49,8 @@ public class RobotStart {
 //        System.out.println(bin1.getAvailableSize());
 //        double distance = point1.distance(point2);
 //        System.out.println("The distance between the points is " + distance);
-        //System.out.println(new NearestNeighbor().solve(products));
+//        System.out.println(new NearestNeighbor().solve(products));
         System.out.println(new EigenAlgoritmeBPP().solve(products));
+        System.out.println((new EigenAlgoritmeBPP().solve(products)).size());
     }
 }

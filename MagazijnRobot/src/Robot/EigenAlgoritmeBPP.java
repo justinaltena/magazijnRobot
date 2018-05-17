@@ -20,21 +20,33 @@ public class EigenAlgoritmeBPP {
 
     public ArrayList<Bin> solve(ArrayList<Product> products) {
         this.products = products;
-        bins.add(new Bin(10));
-        bins.add(new Bin(10));
-        for (Product currentProduct : products) {
-            if (currentProduct.getProductSize() <= bins.get(0).getAvailableSize()) {
-                bins.get(0).addProduct(currentProduct);
-                packedProducts.add(currentProduct);
-            } else if (currentProduct.getProductSize() <= bins.get(0).getAvailableSize()) {
-                bins.get(1).addProduct(currentProduct);
+        if (bins.isEmpty()) {
+            bins.add(new Bin(10));
+            bins.add(new Bin(10));
+        }
+        for (Product currentProduct : this.products) {
+            for (Bin currentBin : bins) {
+                if (currentProduct.getProductSize() <= currentBin.getAvailableSize()) {
+                    currentBin.addProduct(currentProduct);
+                    packedProducts.add(currentProduct);
+                    break;
+                }
+            }
+            if (!packedProducts.contains(currentProduct)) {
+                bins.add(new Bin(10));
+                bins.add(new Bin(10));
+                closedBins.add(bins.get(0));
+                closedBins.add(bins.get(1));
+                bins.remove(1);
+                bins.remove(0);
+                bins.get((bins.size() - 2)).addProduct(currentProduct);
                 packedProducts.add(currentProduct);
             }
-            System.out.println(bins);
         }
-        for (Bin currentBin : bins) {
-            closedBins.add(currentBin);
-            bins.remove(currentBin);
+        for (Bin binbin : bins) {
+            if (binbin.getAvailableSize() != 10) {
+                closedBins.add(binbin);
+            }
         }
         return closedBins;
     }
