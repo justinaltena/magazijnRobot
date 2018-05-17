@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public class XMLReaderDOM {
+public class XMLorderDOM {
 
     private static ArrayList<Product> Xproducts = new ArrayList<>();
     private static int Xorder_id, Xcustomer_id, Xproduct_id;
@@ -19,6 +19,7 @@ public class XMLReaderDOM {
     private static DocumentBuilder dBuilder;
     private static Document doc;
     private static String XSorder_id, XScustomer_id, XSproduct_id;
+    public static Order orderFile;
 
     public static void main(String[] args) {
 
@@ -36,11 +37,11 @@ public class XMLReaderDOM {
 
             //Ophalen en parsen order_id
             XSorder_id = doc.getElementsByTagName("order_id").item(0).getTextContent();
-            Xorder_id = XMLReaderDOM.parseCustomInt(XSorder_id);
+            Xorder_id = XMLorderDOM.parseCustomInt(XSorder_id);
 
             //Ophalen en parsen customer_id
             XScustomer_id = doc.getElementsByTagName("customer_id").item(0).getTextContent();
-            Xcustomer_id = XMLReaderDOM.parseCustomInt(XScustomer_id);
+            Xcustomer_id = XMLorderDOM.parseCustomInt(XScustomer_id);
 
             //Ophalen en parsen order_date
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -61,7 +62,7 @@ public class XMLReaderDOM {
 //            for (Product pro : Xproducts) {
 //                System.out.println(pro.toString());
 //            }
-            Order orderFile = new Order(Xcustomer_id, Xorder_id, Xorder_date, Xproducts);
+            orderFile = new Order(Xcustomer_id, Xorder_id, Xorder_date, Xproducts);
 
             System.out.println(orderFile);
 
@@ -76,7 +77,7 @@ public class XMLReaderDOM {
         if (node.getNodeType() == Node.ELEMENT_NODE) {
             Element element = (Element) node;
             XSproduct_id = getTagValue("product_id", element);
-            Xproduct_id = XMLReaderDOM.parseCustomInt(XSproduct_id);
+            Xproduct_id = XMLorderDOM.parseCustomInt(XSproduct_id);
             product = null;
             product = new Product(
                     Xproduct_id,

@@ -22,4 +22,20 @@ public class Order {
         return "Order{" + "customer_id=" + customer_id + ", order_id=" + order_id + ", order_date=" + order_date + ", products=" + products + '}';
     }
 
+    public int getCustomer_id() {
+        return customer_id;
+    }
+
+    public int getOrder_id() {
+        return order_id;
+    }
+
+    public LocalDate getOrder_date() {
+        return order_date;
+    }
+
+    public ArrayList<Product> getProducts() {
+        return products;
+    }
+
 }
