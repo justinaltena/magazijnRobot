@@ -9,11 +9,17 @@ public class Product {
     private int product_size;
     private Point product_position;
 
-    public Product(String productName, int productSize, Point productPosition) {
+    public Product(int product_id, String productName, int productSize, Point productPosition) {
+        this.product_id = product_id;
         this.product_name = productName;
         this.product_size = productSize;
         this.product_position = productPosition;
 
+    }
+
+    public Product(int product_id, String product_name) {
+        this.product_id = product_id;
+        this.product_name = product_name;
     }
 
     public Product(Point productPosition) {
@@ -22,7 +28,8 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" + "productName=" + product_name + ", productSize=" + product_size + ", productPosition=" + product_position + '}';
+        return "Product{" + "product_id=" + product_id + "productName=" + product_name
+                + ", productSize=" + product_size + ", productPosition=" + product_position + '}';
     }
 
     public String getProductName() {
