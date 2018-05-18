@@ -61,4 +61,11 @@ public class Bin {
         return "Bin{" + "binSize=" + binSize + " Free space:" + this.getAvailableSize() + ", products=" + products + '}';
     }
 
+    public double getFilledPercentage() {
+        double totalSize = 0;
+        for (Product product : products) {
+            totalSize = totalSize + product.getProductSize();
+        }
+        return totalSize;
+    }
 }

@@ -2,6 +2,8 @@ package Robot;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class RobotSchermStart {
 
@@ -41,7 +43,11 @@ public class RobotSchermStart {
 //        System.out.println(bin1.getAvailableSize());
 //        double distance = point1.distance(point2);
 //        System.out.println("The distance between the points is " + distance);
-//        System.out.println(new NearestNeighbor().solve(products));
-        System.out.println(new EigenAlgoritmeBPP().solve(products));
+        ArrayList<Product> sortedProducts = NearestNeighbor.solveTSP(products);
+        System.out.println(sortedProducts);
+        ArrayList<Bin> packedBins = EigenAlgoritmeBPP.solveBPP(sortedProducts);
+        System.out.println(packedBins.size());
+        System.out.println(packedBins);
+
     }
 }

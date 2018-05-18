@@ -6,6 +6,7 @@
 package Robot;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -13,18 +14,20 @@ import java.util.ArrayList;
  */
 public class EigenAlgoritmeBPP {
 
-    private ArrayList<Bin> bins = new ArrayList<>();
-    private ArrayList<Product> products = new ArrayList<>();
-    private ArrayList<Product> packedProducts = new ArrayList<>();
-    private ArrayList<Bin> closedBins = new ArrayList<>();
+    private static ArrayList<Bin> bins = new ArrayList<>();
+    private static ArrayList<Product> products = new ArrayList<>();
+    private static ArrayList<Product> packedProducts = new ArrayList<>();
+    private static ArrayList<Bin> closedBins = new ArrayList<>();
 
-    public ArrayList<Bin> solve(ArrayList<Product> products) {
-        this.products = products;
+    public static ArrayList<Bin> solveBPP(ArrayList<Product> products) {
+        EigenAlgoritmeBPP.products = products;
+        ArrayList<ArrayList<Product>> choppedProducts = chopped(EigenAlgoritmeBPP.products);
+        ArrayList<Product> reversedProducts = reverseProducts(choppedProducts);
         if (bins.isEmpty()) {
             bins.add(new Bin(10));
             bins.add(new Bin(10));
         }
-        for (Product currentProduct : this.products) {
+        for (Product currentProduct : reversedProducts) {
             for (Bin currentBin : bins) {
                 if (currentProduct.getProductSize() <= currentBin.getAvailableSize()) {
                     currentBin.addProduct(currentProduct);
@@ -49,5 +52,25 @@ public class EigenAlgoritmeBPP {
             }
         }
         return closedBins;
+    }
+
+    private static ArrayList<ArrayList<Product>> chopped(ArrayList<Product> products) {
+        ArrayList<ArrayList<Product>> choppedArrayList = new ArrayList<>();
+        int N = products.size();
+        for (int i = 0; i < N; i += 3) {
+            choppedArrayList.add(new ArrayList<Product>(products.subList(i, Math.min(N, i + 3))));
+        }
+        return choppedArrayList;
+    }
+
+    private static ArrayList<Product> reverseProducts(ArrayList<ArrayList<Product>> choppedProducts) {
+        ArrayList<Product> reversedProducts = new ArrayList<>();
+        for (ArrayList<Product> part : choppedProducts) {
+            Collections.reverse(part);
+            for (Product product : part) {
+                reversedProducts.add(product);
+            }
+        }
+        return reversedProducts;
     }
 }

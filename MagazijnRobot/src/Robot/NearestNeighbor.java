@@ -7,6 +7,7 @@ package Robot;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -14,7 +15,7 @@ import java.util.ArrayList;
  */
 public class NearestNeighbor {
 
-    public ArrayList<Product> solve(ArrayList<Product> products) {
+    public static ArrayList<Product> solveTSP(ArrayList<Product> products) {
         ArrayList<Product> route = new ArrayList<Product>() {
             {
                 add(products.get(0));
@@ -37,7 +38,7 @@ public class NearestNeighbor {
         return route;
     }
 
-    private Product getNearest(ArrayList<Product> products, Product comparison) {
+    private static Product getNearest(ArrayList<Product> products, Product comparison) {
         double lowestDistance = -1;
         Product closestProduct = new Product(new Point());
 
@@ -51,10 +52,4 @@ public class NearestNeighbor {
         return closestProduct;
     }
 
-    public ArrayList<ArrayList<Product>> choppedProducts(ArrayList<Product> products) {
-        ArrayList<Product> smallArray = new ArrayList<>();
-        for (int i = 0; i < products.size(); i++) {
-
-        }
-    }
 }
