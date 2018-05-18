@@ -50,12 +50,4 @@ public class EigenAlgoritmeBPP {
         }
         return closedBins;
     }
-
-    public ArrayList<Bin> getBins() {
-        return bins;
-    }
-
-    public ArrayList<Product> getProducts() {
-        return products;
-    }
 }

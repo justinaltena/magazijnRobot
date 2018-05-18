@@ -50,4 +50,11 @@ public class NearestNeighbor {
         }
         return closestProduct;
     }
+
+    public ArrayList<ArrayList<Product>> choppedProducts(ArrayList<Product> products) {
+        ArrayList<Product> smallArray = new ArrayList<>();
+        for (int i = 0; i < products.size(); i++) {
+
+        }
+    }
 }
