@@ -21,7 +21,7 @@ public class XMLorderDOM {
     private static String XSorder_id, XScustomer_id, XSproduct_id;
     public static Order orderFile;
 
-    public static void main(String[] args) {
+    public static void main() {
 
         try {
             xmlFile = new File("Order001.xml");  //Aanmaken object
