@@ -1,6 +1,9 @@
 package Robot;
 
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.util.ArrayList;
 import javax.swing.*;
 
 public class OrderPanel extends JPanel {
@@ -24,5 +27,14 @@ public class OrderPanel extends JPanel {
 
         setVisible(true);
 
+    }
+
+    public void drawRoute(Graphics g, ArrayList<Product> products) {
+        g.drawLine(0, 0, products.get(0).getProductX(), products.get(0).getProductY());
+        Product previousProduct = products.get(0);
+        for (Product product : products) {
+            g.drawLine(previousProduct.getProductX(), previousProduct.getProductY(), product.getProductX(), product.getProductY());
+            previousProduct = product;
+        }
     }
 }

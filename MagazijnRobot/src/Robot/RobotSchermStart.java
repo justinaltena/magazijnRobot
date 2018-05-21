@@ -8,7 +8,7 @@ import java.util.Collections;
 public class RobotSchermStart {
 
     public static void main(String[] args) {
-        //RobotGUI gui = new RobotGUI();
+        RobotGUI gui = new RobotGUI();
 
         Point point1 = new Point(3, 1);
         Point point2 = new Point(9, 4);

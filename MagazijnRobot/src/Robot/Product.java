@@ -43,4 +43,11 @@ public class Product {
         return product_position;
     }
 
+    public int getProductX() {
+        return (int) product_position.getX();
+    }
+
+    public int getProductY() {
+        return (int) product_position.getY();
+    }
 }
