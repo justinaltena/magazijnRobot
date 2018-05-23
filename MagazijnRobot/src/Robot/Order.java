@@ -31,6 +31,8 @@ public class Order {
     }
 
     public LocalDate getOrder_date() {
+        //DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern()
+        //String formattedDate = LocalDate.parse(order_date);
         return order_date;
     }
 
@@ -38,4 +40,16 @@ public class Order {
         return products;
     }
 
+    public String printProducts() {
+        String output = "<html>";
+        for (Product p : products) {
+            output += p.getProduct_id();
+            output += ". ";
+            output += p.getProductName();
+            output += "<br/>";
+            //System.out.println(output);
+        }
+        output += "</html>";
+        return output;
+    }
 }
