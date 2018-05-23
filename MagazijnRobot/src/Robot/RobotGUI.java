@@ -23,6 +23,7 @@ public class RobotGUI extends JFrame implements ActionListener {
     public RobotGUI() {
         rostart = new RobotStart();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultLookAndFeelDecorated(true);
 
         setTitle("Controlesoftware AS/RS-opstelling");
         setPreferredSize(new Dimension(1500, 1000));
@@ -54,9 +55,9 @@ public class RobotGUI extends JFrame implements ActionListener {
                 XMLorderDOM.main();
                 OrderPanel orderDetails = new OrderPanel();
                 add(orderDetails);
-                pack();
                 orderDetails.setVisible(true);
                 orderCheck = true;
+                pack();
             }
         } else if (e.getSource() == start) {
 //            RobotStart.main();

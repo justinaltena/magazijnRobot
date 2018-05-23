@@ -8,7 +8,7 @@ import java.util.Collections;
 public class RobotSchermStart {
 
     public static void main(String[] args) {
-        RobotGUI gui = new RobotGUI();
+        //RobotGUI gui = new RobotGUI();
 
         Point point1 = new Point(3, 1);
         Point point2 = new Point(9, 4);
@@ -43,11 +43,10 @@ public class RobotSchermStart {
 //        System.out.println(bin1.getAvailableSize());
 //        double distance = point1.distance(point2);
 //        System.out.println("The distance between the points is " + distance);
-        ArrayList<Product> sortedProducts = NearestNeighbor.solveTSP(products);
-        System.out.println(sortedProducts);
-        ArrayList<Bin> packedBins = EigenAlgoritmeBPP.solveBPP(sortedProducts);
-        System.out.println(packedBins.size());
-        System.out.println(packedBins);
-
+//        ArrayList<Product> sortedProducts = NearestNeighbor.solveTSP(products);
+//        System.out.println(sortedProducts);
+//        ArrayList<Bin> packedBins = EigenAlgoritmeBPP.solveBPP(sortedProducts);
+//        System.out.println(packedBins.size());
+//        System.out.println(packedBins);
     }
 }

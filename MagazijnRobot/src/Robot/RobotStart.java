@@ -9,7 +9,9 @@ public class RobotStart {
     private static ArrayList<Product> BPPvolgorde = new ArrayList<>();
     private static ArrayList<Bin> bins = new ArrayList<>();
 
-    public static void main(String[] args) {
+    public static void main() {
+        System.out.println(XMLorderDOM.orderFile.printProducts());
+
         /*
         1 XMLdatabaseDOM
                 input = product_id
@@ -48,7 +50,4 @@ public class RobotStart {
          */
     }
 
-    public static void timer() {
-        //Timer
-    }
 }

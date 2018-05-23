@@ -18,7 +18,8 @@ public class XMLorderDOM {
     private static DocumentBuilderFactory dbFactory;
     private static DocumentBuilder dBuilder;
     private static Document doc;
-    private static String XSorder_id, XScustomer_id, XSproduct_id;
+    private static String XSorder_id, XScustomer_id, XSproduct_id,
+            XSproduct_name, Xproduct_name;
     public static Order orderFile;
 
     public static void main() {
@@ -77,10 +78,12 @@ public class XMLorderDOM {
             Element element = (Element) node;
             XSproduct_id = getTagValue("product_id", element);
             Xproduct_id = XMLorderDOM.parseCustomInt(XSproduct_id);
+            XSproduct_name = getTagValue("product_name", element);
+            Xproduct_name = XSproduct_name.trim();
             product = null;
             product = new Product(
                     Xproduct_id,
-                    getTagValue("product_name", element));
+                    Xproduct_name);
         }
 
         return product;

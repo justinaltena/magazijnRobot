@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
+import static javax.swing.JFrame.setDefaultLookAndFeelDecorated;
 import javax.swing.border.EmptyBorder;
 
 public class OrderPanel extends JPanel {
@@ -14,10 +15,12 @@ public class OrderPanel extends JPanel {
 
     public OrderPanel() {
 
-        setPreferredSize(new Dimension(500, 1000));
+        setSize(new Dimension(10, 100));
         //setAlignmentX(LEFT_ALIGNMENT);
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        //setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.setLayout(new GridLayout(4, 2));
         //setBorder(new EmptyBorder(new Insets(150, 200, 150, 200)));
+        setDefaultLookAndFeelDecorated(true);
 
         jlCustomer_id = new JLabel("Klantnummer:");
         try {
@@ -26,7 +29,7 @@ public class OrderPanel extends JPanel {
             e1.printStackTrace();
         }
         // add(Box.createRigidArea(new Dimension(0, 50)));
-        add(Box.createVerticalGlue());
+        //add(Box.createVerticalGlue());
 
         //add(Box.createRigidArea(new Dimension(0, 5)));
         jtaCustomer_id = new JLabel(String.valueOf(XMLorderDOM.orderFile.getCustomer_id()));
@@ -53,12 +56,10 @@ public class OrderPanel extends JPanel {
         jlProducts = new JLabel("Producten:");
         add(jlProducts);
 
-        jtaProducts = new JLabel("<html>Ik kom hier voor mij lol<br/>Begrepen?</html>", SwingConstants.CENTER);
-        //jtaProducts = new JLabel(String.valueOf(XMLorderDOM.orderFile.printProducts()));
+        //jtaProducts = new JLabel("<html>Ik kom hier voor mij lol<br/>Begrepen?</html>", SwingConstants.CENTER);
+        jtaProducts = new JLabel(String.valueOf(XMLorderDOM.orderFile.printProducts()));
         add(jtaProducts);
-
-        setVisible(true);
-
+        revalidate();
     }
 
 }

@@ -41,15 +41,31 @@ public class Order {
     }
 
     public String printProducts() {
-        String output = "<html>";
+        String output = "";
         for (Product p : products) {
             output += p.getProduct_id();
             output += ". ";
             output += p.getProductName();
-            output += "<br/>";
+            output += "\n";
             //System.out.println(output);
         }
-        output += "</html>";
         return output;
+    }
+
+    public String printOrder() {
+        Order file = XMLorderDOM.orderFile;
+
+        String out = "Klantnr.:\n";
+        out += file.getCustomer_id();
+        out += "\n\nOrdernr.:\n";
+        out += file.getOrder_id();
+        out += "\n\nOrderdatum:\n";
+        out += file.getOrder_date();
+        out += "\n\nProducten:\n";
+        for (Product p : products) {
+            out += p.getProduct_id() + ". " + p.getProductName() + "\n";
+        }
+        out += "\n\n";
+        return out;
     }
 }
