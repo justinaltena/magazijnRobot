@@ -53,5 +53,6 @@ public class RobotSchermStart {
 
         String stringForArduino = new RobotControl().convertCoordinates(packedBins);
         System.out.println(stringForArduino);
+
     }
 }

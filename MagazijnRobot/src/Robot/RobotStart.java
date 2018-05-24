@@ -9,7 +9,9 @@ public class RobotStart {
     private static ArrayList<Product> BPPvolgorde = new ArrayList<>();
     private static ArrayList<Bin> bins = new ArrayList<>();
 
-    public static void main(String[] args) {
+    public static void main() {
+        System.out.println(XMLorderDOM.orderFile.printProducts());
+
         /*
         1 XMLdatabaseDOM
                 input = product_id
@@ -34,6 +36,9 @@ public class RobotStart {
         4-1 RobotAansturing TSP
                 input = ArrayList<Product> in TSPvolgorde
                 output = Locatie updates van ophaalrobot (Point)
+                beginmethode = ArrayList<Product> omtoveren naar int 1,6,8 (bv)
+                x = 0,1,2,3,4
+                y = 0*5,1*5,2*5,3*5
 
         4-2 RobotAansturing BPP
                 input = ArrayList<Bin> bins
@@ -45,7 +50,4 @@ public class RobotStart {
          */
     }
 
-    public static void timer() {
-        //Timer
-    }
 }

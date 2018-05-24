@@ -1,40 +1,65 @@
 package Robot;
 
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Point;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
+import static javax.swing.JFrame.setDefaultLookAndFeelDecorated;
+import javax.swing.border.EmptyBorder;
 
 public class OrderPanel extends JPanel {
 
     private JLabel jlCustomer_id, jlOrder_id, jlOrderdate, jlProducts;
-    private JTextArea jtaCustomer_id, jtaOrder_id, jtaOrderdate, jtaProducts;
+    private JLabel jtaCustomer_id, jtaOrder_id, jtaOrderdate, jtaProducts;
 
     public OrderPanel() {
 
-        setPreferredSize(new Dimension(250, 80));
-        setAlignmentX(LEFT_ALIGNMENT);
+        setSize(new Dimension(10, 100));
+        //setAlignmentX(LEFT_ALIGNMENT);
+        //setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.setLayout(new GridLayout(4, 2));
+        //setBorder(new EmptyBorder(new Insets(150, 200, 150, 200)));
+        setDefaultLookAndFeelDecorated(true);
 
-        setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         jlCustomer_id = new JLabel("Klantnummer:");
-        add(jlCustomer_id);
-
-        add(Box.createRigidArea(new Dimension(0, 5)));
-        jtaCustomer_id = new JTextArea();
-        add(jtaCustomer_id);
-        setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
-        setVisible(true);
-
-    }
-
-    public void drawRoute(Graphics g, ArrayList<Product> products) {
-        g.drawLine(0, 0, products.get(0).getProductX(), products.get(0).getProductY());
-        Product previousProduct = products.get(0);
-        for (Product product : products) {
-            g.drawLine(previousProduct.getProductX(), previousProduct.getProductY(), product.getProductX(), product.getProductY());
-            previousProduct = product;
+        try {
+            add(jlCustomer_id);
+        } catch (Exception e1) {
+            e1.printStackTrace();
         }
+        // add(Box.createRigidArea(new Dimension(0, 50)));
+        //add(Box.createVerticalGlue());
+
+        //add(Box.createRigidArea(new Dimension(0, 5)));
+        jtaCustomer_id = new JLabel(String.valueOf(XMLorderDOM.orderFile.getCustomer_id()));
+        add(jtaCustomer_id);
+        // setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        jlOrder_id = new JLabel("Order ID:");
+        try {
+            add(jlOrder_id);
+        } catch (Exception e2) {
+            e2.printStackTrace();
+        }
+
+        jtaOrder_id = new JLabel(String.valueOf(XMLorderDOM.orderFile.getOrder_id()));
+        //jtaOrder_id.setText();
+        add(jtaOrder_id);
+
+        jlOrderdate = new JLabel("Orderdatum:");
+        add(jlOrderdate);
+
+        jtaOrderdate = new JLabel(String.valueOf(XMLorderDOM.orderFile.getOrder_date()));
+        add(jtaOrderdate);
+
+        jlProducts = new JLabel("Producten:");
+        add(jlProducts);
+
+        //jtaProducts = new JLabel("<html>Ik kom hier voor mij lol<br/>Begrepen?</html>", SwingConstants.CENTER);
+        jtaProducts = new JLabel(String.valueOf(XMLorderDOM.orderFile.printProducts()));
+        add(jtaProducts);
+        revalidate();
     }
+
 }

@@ -31,6 +31,8 @@ public class Order {
     }
 
     public LocalDate getOrder_date() {
+        //DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern()
+        //String formattedDate = LocalDate.parse(order_date);
         return order_date;
     }
 
@@ -38,4 +40,32 @@ public class Order {
         return products;
     }
 
+    public String printProducts() {
+        String output = "";
+        for (Product p : products) {
+            output += p.getProduct_id();
+            output += ". ";
+            output += p.getProductName();
+            output += "\n";
+            //System.out.println(output);
+        }
+        return output;
+    }
+
+    public String printOrder() {
+        Order file = XMLorderDOM.orderFile;
+
+        String out = "Klantnr.:\n";
+        out += file.getCustomer_id();
+        out += "\n\nOrdernr.:\n";
+        out += file.getOrder_id();
+        out += "\n\nOrderdatum:\n";
+        out += file.getOrder_date();
+        out += "\n\nProducten:\n";
+        for (Product p : products) {
+            out += p.getProduct_id() + ". " + p.getProductName() + "\n";
+        }
+        out += "\n\n";
+        return out;
+    }
 }

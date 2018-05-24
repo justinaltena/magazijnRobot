@@ -31,6 +31,10 @@ public class Product {
         return "product_id=" + product_id + " " + getProductX() + " " + getProductY();
     }
 
+    public int getProduct_id() {
+        return product_id;
+    }
+
     public String getProductName() {
         return product_name;
     }
