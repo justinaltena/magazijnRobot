@@ -18,10 +18,15 @@ public class RobotControl {
     private ArrayList<Product> products = new ArrayList<>();
     String x = "";
 
+    //Functie waar een ArrayList van bins ingaat en een string met getallen uitkomt
+    //De functie zorgt ervoor dat afhankelijk van de positite van het product, elk product een int tussen de 1 en 15 krijgt die daarna wordt toegevoegd aan een string
     public String convertCoordinates(ArrayList<Bin> bins) {
+        //De producten van alle bins worden toegevoegd aan een grote arraylist met alle producten
         for (Bin bin : bins) {
             products.addAll(bin.getProducts());
         }
+        //Voor elk product wordt afhankelijk van de positie van dat product een waarde toegevoegd aan de string
+        //Hieronder al deze waarden
         for (Product product : products) {
             if (product.getProductX() == 0 && product.getProductY() == 0) {
                 x = "1,";

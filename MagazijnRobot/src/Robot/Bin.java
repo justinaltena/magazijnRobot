@@ -21,7 +21,9 @@ public class Bin {
         products = new ArrayList<>();
     }
 
+    //Methode om producten toe te voegen aan een bin
     public void addProduct(Product product) {
+        //Wanneer er genoeg ruimte is in de bin om het product toe te voegen gebeurd dit, anders foutmelding
         if (product.getProductSize() <= this.getAvailableSize()) {
             products.add(product);
         } else {
@@ -30,6 +32,7 @@ public class Bin {
 
     }
 
+    //Methode om alle producten uit de bin te printen in de console
     public void printBin() {
         for (Product product : products) {
             System.out.println(product);
@@ -44,6 +47,7 @@ public class Bin {
         return this.binSize;
     }
 
+    //Methode om te kijken hoeveel ruimte er nog is in de bin
     public int getAvailableSize() {
         int size = 0;
         if (products.size() > 0) {
@@ -57,15 +61,8 @@ public class Bin {
     }
 
     @Override
+    //Methode om de standaard printmethode aan te passen
     public String toString() {
         return "Bin{" + "binSize=" + binSize + " Free space:" + this.getAvailableSize() + ", products=" + products + '}';
-    }
-
-    public double getFilledPercentage() {
-        double totalSize = 0;
-        for (Product product : products) {
-            totalSize = totalSize + product.getProductSize();
-        }
-        return totalSize;
     }
 }

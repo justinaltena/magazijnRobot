@@ -20,6 +20,7 @@ public class JavaToArduino {
     static SerialPort arduino;
 
     public static void main(String[] args) {
+        //testwaarden
         Point point1 = new Point(0, 2);
         Point point2 = new Point(4, 1);
         Point point3 = new Point(3, 0);
@@ -64,24 +65,29 @@ public class JavaToArduino {
         String stringForArduino = new RobotControl().convertCoordinates(packedBins);
 //        System.out.println(stringForArduino);
 
-        String comport = "com5";
+        String comport = "com5";//Waarde van de poort invullen waar arduino op aangesloten wordt
         arduino = SerialPort.getCommPort(comport);
         arduino.setComPortTimeouts(SerialPort.TIMEOUT_SCANNER, 0, 0);
+        //Als de poort geopend kan worden wordt deze code uitgevoerd, anders wordt een foutmelding gegeven
         if (arduino.openPort() == true) {
+            //Open een nieuwe Thread waarop dit proces kan runnen
             Thread thread = new Thread() {
                 @Override
                 public void run() {
                     try {
+                        //Er wordt een nieuwe outputStream geopend op de seriele poort van de arduino
                         OutputStream a = arduino.getOutputStream();
-                        System.out.println(stringForArduino);
+                        //System.out.println(stringForArduino);
+                        //De String met voorbeeld getallen wordt hier in bytes gestuurd naar de arduino waar ze verder afgehandeld worden
                         a.write(stringForArduino.getBytes());
+                        //Na het verzenden van het bericht wordt de outputstream schoongemaakt en de outputstream gesloten
                         a.flush();
-
                         a.close();
-
+                        //Als er een fout optreedt in het proces wordt die hier opgevangen
                     } catch (IOException e) {
                         System.out.println("Error");
                     }
+                    //Na het sluiten van de outputstream kan ook de verbinding worden verbroken
                     arduino.closePort();
                     System.out.println("CLOSE COM");
                 }
