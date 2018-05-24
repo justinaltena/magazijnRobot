@@ -28,7 +28,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "product_id=" + product_id;
+        return "product_id=" + product_id + " " + getProductX() + " " + getProductY();
     }
 
     public String getProductName() {

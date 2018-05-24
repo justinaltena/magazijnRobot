@@ -1,15 +1,25 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Robot;
 
+import com.fazecast.jSerialComm.SerialPort;
 import java.awt.Point;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 
-public class RobotSchermStart {
+/**
+ *
+ * @author Justin Altena
+ */
+public class JavaToArduino {
+
+    static SerialPort arduino;
 
     public static void main(String[] args) {
-        //RobotGUI gui = new RobotGUI();
-
         Point point1 = new Point(0, 2);
         Point point2 = new Point(4, 1);
         Point point3 = new Point(3, 0);
@@ -52,6 +62,33 @@ public class RobotSchermStart {
 //        System.out.println(packedBins);
 
         String stringForArduino = new RobotControl().convertCoordinates(packedBins);
-        System.out.println(stringForArduino);
+//        System.out.println(stringForArduino);
+
+        String comport = "com5";
+        arduino = SerialPort.getCommPort(comport);
+        arduino.setComPortTimeouts(SerialPort.TIMEOUT_SCANNER, 0, 0);
+        if (arduino.openPort() == true) {
+            Thread thread = new Thread() {
+                @Override
+                public void run() {
+                    try {
+                        OutputStream a = arduino.getOutputStream();
+                        System.out.println(stringForArduino);
+                        a.write(stringForArduino.getBytes());
+                        a.flush();
+
+                        a.close();
+
+                    } catch (IOException e) {
+                        System.out.println("Error");
+                    }
+                    arduino.closePort();
+                    System.out.println("CLOSE COM");
+                }
+            };
+            thread.start();
+        } else {
+            System.out.println("Cannot open port: " + comport);
+        }
     }
 }
