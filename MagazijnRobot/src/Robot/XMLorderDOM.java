@@ -65,7 +65,7 @@ public class XMLorderDOM {
 //            }
             orderFile = new Order(Xcustomer_id, Xorder_id, Xorder_date, Xproducts);
 
-            // System.out.println(orderFile);
+            System.out.println(orderFile);
         } catch (SAXException | ParserConfigurationException | IOException e1) {
             e1.printStackTrace();
         }

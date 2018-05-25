@@ -44,8 +44,8 @@ public class Order {
         String output = "";
         for (Product p : products) {
             output += p.getProduct_id();
-            output += ". ";
-            output += p.getProduct_name();
+            output += ". Coördinaten= ";
+            output += p.printCoordinates();
             output += "\n";
             //System.out.println(output);
         }

@@ -1,17 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Robot;
 
 import java.awt.Point;
 import java.util.ArrayList;
 
-/**
- *
- * @author Justin Altena
- */
 public class NearestNeighbor {
 
     //Methode waar een ArrayList met producten ingaat,de producten op de goede volgorde, en daarna een ArrayList met die producten terugstuurd
@@ -51,7 +42,7 @@ public class NearestNeighbor {
         Product closestProduct = new Product(new Point());
         //Voor alle producten uit de meegegeven arraylist wordt de afstand berekent tussen het huidige product en het vergelijkingsproduct
         for (Product currentProduct : products) {
-            double distance = currentProduct.getProductPosition().distance(comparison.getProductPosition());
+            double distance = currentProduct.getProduct_position().distance(comparison.getProduct_position());
             //Als die afstand kleiner is als de kleinste afstand tot nu toe, of kleiner is als 0(wat aangeeft dat het het eerste product is)
             //Krijgt closestProduct de waarde van het huidige product en wordt de kleinste afstand aangepast aan deze kortste afstand
             if (distance < lowestDistance || lowestDistance < 0) {

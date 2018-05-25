@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Robot;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author Justin Altena
- */
 public class Bin {
 
     private int binSize;
@@ -24,7 +15,7 @@ public class Bin {
     //Methode om producten toe te voegen aan een bin
     public void addProduct(Product product) {
         //Wanneer er genoeg ruimte is in de bin om het product toe te voegen gebeurd dit, anders foutmelding
-        if (product.getProductSize() <= this.getAvailableSize()) {
+        if (product.getProduct_size() <= this.getAvailableSize()) {
             products.add(product);
         } else {
             System.out.println("Bin is full");
@@ -52,7 +43,7 @@ public class Bin {
         int size = 0;
         if (products.size() > 0) {
             for (Product product : products) {
-                size += product.getProductSize();
+                size += product.getProduct_size();
             }
             return this.binSize - size;
         } else {

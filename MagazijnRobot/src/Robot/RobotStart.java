@@ -4,16 +4,37 @@ import java.util.ArrayList;
 
 public class RobotStart {
 
-    private static ArrayList<Product> products = new ArrayList<>();
-    private static ArrayList<Product> TSPvolgorde = new ArrayList<>();
-    private static ArrayList<Product> BPPvolgorde = new ArrayList<>();
-    private static ArrayList<Bin> bins = new ArrayList<>();
-    public static Order orderFileC;
+    public static ArrayList<Product> products = new ArrayList<>();
+    public static ArrayList<Product> TSPvolgorde = new ArrayList<>();
+    public static ArrayList<Product> BPPvolgorde = new ArrayList<>();
+    public static ArrayList<Bin> bins = new ArrayList<>();
+    public static Order orderFileZ, orderFileC;
+
+    public static String stap1() {
+        orderFileZ = XMLorderDOM.orderFile;
+        dbConnection.main();
+        orderFileC = XMLorderDOM.orderFile;
+        return orderFileC.printProducts();
+    }
+
+    public static void stap2() {
+        try {
+            products = XMLorderDOM.orderFile.getProducts();
+            System.out.println("gelukt products array aanmaken");
+            System.out.println(products);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void stap3() {
+        TSPvolgorde = NearestNeighbor.solveTSP(products);
+
+    }
 
     public static void main() {
 
-        orderFileC = XMLorderDOM.orderFile;
-
+        //RobotPRGUI.RFrame.addText(orderFileC.printProducts());
         /*
         1 XMLdatabaseDOM
                 input = product_id

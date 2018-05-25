@@ -33,7 +33,8 @@ public class RobotPRGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("AS/RS Robotopstelling");
-        setMinimumSize(new java.awt.Dimension(1200, 900));
+        setMinimumSize(new java.awt.Dimension(1250, 1000));
+        setName("RobotFrame"); // NOI18N
         setPreferredSize(new java.awt.Dimension(1500, 1000));
 
         jbLaadorder.setText("Inladen order");
@@ -53,11 +54,13 @@ public class RobotPRGUI extends javax.swing.JFrame {
 
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
 
+        jtaConsole.setEditable(false);
+
         javax.swing.GroupLayout tsppanelLayout = new javax.swing.GroupLayout(tsppanel);
         tsppanel.setLayout(tsppanelLayout);
         tsppanelLayout.setHorizontalGroup(
             tsppanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1109, Short.MAX_VALUE)
+            .addGap(0, 1114, Short.MAX_VALUE)
         );
         tsppanelLayout.setVerticalGroup(
             tsppanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,7 +111,7 @@ public class RobotPRGUI extends javax.swing.JFrame {
                         .addComponent(jtaConsole, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbLaadorder)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 203, Short.MAX_VALUE)
                         .addComponent(jbStart, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(39, 39, 39))
         );
@@ -133,7 +136,17 @@ public class RobotPRGUI extends javax.swing.JFrame {
 
     private void jbStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbStartActionPerformed
         // TODO add your handling code here:
-        RobotStart.main();
+        String txt = RobotStart.stap1();
+        jtaConsole.append(txt);
+        RobotStart.stap2();
+        try {
+            repaint();
+            System.out.println("Gelukt repaint");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        RobotStart.stap3();
+
     }//GEN-LAST:event_jbStartActionPerformed
 
     /**
@@ -166,7 +179,8 @@ public class RobotPRGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RobotPRGUI().setVisible(true);
+                RobotPRGUI RFrame = new RobotPRGUI();
+                RFrame.setVisible(true);
             }
         });
     }
@@ -183,7 +197,7 @@ public class RobotPRGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jbLaadorder;
     private javax.swing.JButton jbStart;
-    private java.awt.TextArea jtaConsole;
+    public java.awt.TextArea jtaConsole;
     private javax.swing.JPanel tsppanel;
     // End of variables declaration//GEN-END:variables
 }
