@@ -30,6 +30,22 @@
                 Gitaar
             </product_name>
         </product>
+        <product>
+            <product_id>
+                49
+            </product_id>
+            <product_name>
+                Stardestroyer
+            </product_name>
+        </product>
+        <product>
+            <product_id>
+                38
+            </product_id>
+            <product_name>
+                Gitaar
+            </product_name>
+        </product>
     </order_info>
       
 </order>

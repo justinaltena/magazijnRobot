@@ -126,7 +126,7 @@ public class RobotPRGUI extends javax.swing.JFrame {
 //                OrderPanel orderDetails = new OrderPanel();
 //                add(orderDetails);
 //                orderDetails.setVisible(true);
-            jbStart.enabled(true);
+            jbStart.setEnabled(true);
             orderCheck = true;
         }
     }//GEN-LAST:event_jbLaadorderActionPerformed

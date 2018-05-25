@@ -45,7 +45,7 @@ public class Order {
         for (Product p : products) {
             output += p.getProduct_id();
             output += ". ";
-            output += p.getProductName();
+            output += p.getProduct_name();
             output += "\n";
             //System.out.println(output);
         }
@@ -63,7 +63,7 @@ public class Order {
         out += file.getOrder_date();
         out += "\n\nProducten:\n";
         for (Product p : products) {
-            out += p.getProduct_id() + ". " + p.getProductName() + "\n";
+            out += p.getProduct_id() + ". " + p.getProduct_name() + "\n";
         }
         out += "\n\n";
         return out;

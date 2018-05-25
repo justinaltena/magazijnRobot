@@ -8,9 +8,11 @@ public class RobotStart {
     private static ArrayList<Product> TSPvolgorde = new ArrayList<>();
     private static ArrayList<Product> BPPvolgorde = new ArrayList<>();
     private static ArrayList<Bin> bins = new ArrayList<>();
+    public static Order orderFileC;
 
     public static void main() {
-        System.out.println(XMLorderDOM.orderFile.printProducts());
+
+        orderFileC = XMLorderDOM.orderFile;
 
         /*
         1 XMLdatabaseDOM
