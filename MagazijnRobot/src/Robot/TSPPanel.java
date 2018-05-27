@@ -36,11 +36,9 @@ public class TSPPanel extends JPanel {
         g2.draw(new Line2D.Float(330, 10, 330, 520));
         g2.draw(new Line2D.Float(490, 10, 490, 520));
         g2.draw(new Line2D.Float(650, 10, 650, 520));
-        //productsT = RobotStart.productsR;
+
+        //TEKENEN PAKKETTEN NA LADEN ORDER
         try {
-//            System.out.print("Start van for-loop = ");
-//            System.out.println(exec.getProductsR());
-            //TEKENEN PAKKETTEN NA LADEN ORDER
             if (!exec.getProductsR().isEmpty()) {
                 for (Product pd : exec.getProductsR()) {
                     int px = pd.getProductX();
@@ -48,40 +46,61 @@ public class TSPPanel extends JPanel {
                     int py = pd.getProductY();
                     int y = convertY(py);
                     drawProduct(g, x, y);
-                    System.out.println("Gelukt Tekenen");
                 }
             }
         } catch (NullPointerException e) {
             System.out.println("Kan niet repainten, array is leeg");
         }
 
-//        for (Product pt : exec.getTSPvolgorde()) {
-//            int x = convertX(pt.getProductX());
-//            int y = convertY(pt.getProductY());
-//
-//        }
+        try {
+            drawRoute(g, exec.getTSPvolgorde());
+        } catch (NullPointerException e) {
+            System.out.println("TSPvolgorde net voor tekenen is leeg");
+        }
     }
 
     public void drawProduct(Graphics g, float x, float y) {
         Graphics2D g3 = (Graphics2D) g;
-        g3.setColor(Color.RED);
+        g3.setColor(Color.BLUE);
         g3.setStroke(new BasicStroke(5));
         g3.draw(new Line2D.Float(x, y, (x + 160), (y + 167)));
         g3.draw(new Line2D.Float((x + 160), y, x, (y + 167)));
 
     }
 
-    public void drawRoute(Graphics g, int x1, int y1) {
+    public void drawRoute(Graphics g, ArrayList<Product> coor) {
         Graphics2D g4 = (Graphics2D) g;
-        g4.setColor(Color.LIGHT_GRAY);
+        g4.setColor(Color.RED);
         g4.setStroke(new BasicStroke(3));
 
-    }
-
-    public void drawRoute(Graphics g, int x1, int y1, int x2, int y2) {
-        Graphics2D g5 = (Graphics2D) g;
-        g5.setColor(Color.LIGHT_GRAY);
-        g5.setStroke(new BasicStroke(3));
+        Point prevCoor, nextCoor;
+        int prevX, prevY, nextX, nextY;
+        int start = 0;
+        int einde = 0;
+        for (int i = 0; i < (exec.getTSPvolgorde().size()) - 1; i++) {
+            prevCoor = exec.getTSPvolgorde().get(i).getProduct_position();
+            nextCoor = exec.getTSPvolgorde().get(i + 1).getProduct_position();
+            prevX = convertX((int) prevCoor.getX()) + 80;
+            prevY = convertY((int) prevCoor.getY()) + 84;
+            nextX = convertX((int) nextCoor.getX()) + 80;
+            nextY = convertY((int) nextCoor.getY()) + 84;
+            while (start == 0) {
+                g4.setColor(Color.GREEN);
+                g4.fillOval((prevX - 20), (prevY - 20), 40, 40);
+                start = 1;
+                g4.setColor(Color.RED);
+            }
+            while (einde == 0 && i == (exec.getTSPvolgorde().size()) - 2) {
+                g4.fillOval((nextX - 20), (nextY - 20), 40, 40);
+                einde = 1;
+            }
+            if ((i + 1) % 3 == 0) {
+                g4.draw(new Line2D.Double(prevX, prevY, 10, 530));
+                g4.draw(new Line2D.Double(10, 530, nextX, nextY));
+            } else {
+                g4.draw(new Line2D.Double(prevX, prevY, nextX, nextY));
+            }
+        }
 
     }
 

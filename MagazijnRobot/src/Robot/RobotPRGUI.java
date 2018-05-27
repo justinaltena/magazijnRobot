@@ -9,7 +9,8 @@ public class RobotPRGUI extends javax.swing.JFrame {
     private boolean orderCheck;
     public RobotStart exec;
     public static ArrayList<Product> productsR = new ArrayList<>();
-    private ArrayList<Product> TSPvolgorde = new ArrayList<>();
+    public ArrayList<Product> TSPvolgorde = new ArrayList<>();
+    public ArrayList<Bin> BPPvolgorde = new ArrayList<>();
 
     public RobotPRGUI() {
         initComponents();
@@ -35,9 +36,10 @@ public class RobotPRGUI extends javax.swing.JFrame {
         jbStart = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jtaConsole = new java.awt.TextArea();
-        bpppanel = null; BPPPanel bpppanel = new BPPPanel();
         tsppanel = new Robot.TSPPanel();
         tsppanel.setExec(exec);
+        bpppanel = new Robot.BPPPanel();
+        bpppanel.setExec(exec);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("AS/RS Robotopstelling");
@@ -63,26 +65,26 @@ public class RobotPRGUI extends javax.swing.JFrame {
 
         jtaConsole.setEditable(false);
 
-        javax.swing.GroupLayout bpppanelLayout = new javax.swing.GroupLayout(bpppanel);
-        bpppanel.setLayout(bpppanelLayout);
-        bpppanelLayout.setHorizontalGroup(
-            bpppanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1114, Short.MAX_VALUE)
-        );
-        bpppanelLayout.setVerticalGroup(
-            bpppanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 256, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout tsppanelLayout = new javax.swing.GroupLayout(tsppanel);
         tsppanel.setLayout(tsppanelLayout);
         tsppanelLayout.setHorizontalGroup(
             tsppanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 1114, Short.MAX_VALUE)
         );
         tsppanelLayout.setVerticalGroup(
             tsppanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 618, Short.MAX_VALUE)
+            .addGap(0, 550, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout bpppanelLayout = new javax.swing.GroupLayout(bpppanel);
+        bpppanel.setLayout(bpppanelLayout);
+        bpppanelLayout.setHorizontalGroup(
+            bpppanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        bpppanelLayout.setVerticalGroup(
+            bpppanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 324, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -100,8 +102,8 @@ public class RobotPRGUI extends javax.swing.JFrame {
                             .addComponent(jbLaadorder))
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bpppanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tsppanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(tsppanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(bpppanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -146,24 +148,26 @@ public class RobotPRGUI extends javax.swing.JFrame {
     private void jbStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbStartActionPerformed
         exec = new RobotStart();
         exec.setOrder();
-        System.out.println("na uitvoeren setorder = " + exec);
-        String txt = exec.stap1();
-        System.out.println("na uitvoeren stap1 = " + exec);
-        jtaConsole.append(txt);
+        String txtPosition = exec.stap1();
+        jtaConsole.append(txtPosition + "\n");
+        String txtSize = exec.stap2();
+        jtaConsole.append(txtSize + "\n");
 
         productsR = exec.getProductsR();
         tsppanel.setExec(exec);
-        System.out.println("PRGUI-productsR = " + exec.getProductsB());
         tsppanel.repaint();
         System.out.println("exec na repaint = " + exec);
 
-        //TSPvolgorde = NearestNeighbor.solveTSP(productsR);
-        NearestNeighbor nn = new NearestNeighbor();
-        TSPvolgorde = nn.solveTSP(productsR);
-        System.out.println("exec na setTSPvolgorde = " + exec);
+        TSPvolgorde = exec.setTSP(productsR);
         tsppanel.setExec(exec);
-        System.out.println("exec na tweede setExec in PRGUI = " + exec);
         System.out.println("De TSPvolgorde = " + TSPvolgorde);
+
+        BPPvolgorde = exec.setBPP(TSPvolgorde);
+        System.out.println("BPPvolgorde na exec = " + BPPvolgorde);
+        bpppanel.setExec(exec);
+        bpppanel.repaint();
+        String binSize = Integer.toString(exec.getBins().get(0).getBinSize());
+        jtaConsole.append("Grootte van een bin = " + binSize + "\n");
 
         jbStart.setEnabled(false);
     }//GEN-LAST:event_jbStartActionPerformed
@@ -216,7 +220,7 @@ public class RobotPRGUI extends javax.swing.JFrame {
     private Robot.BPPPanel bPPPanel5;
     private Robot.BPPPanel bPPPanel6;
     private Robot.BPPPanel bPPPanel7;
-    private javax.swing.JPanel bpppanel;
+    private Robot.BPPPanel bpppanel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jbLaadorder;
     private javax.swing.JButton jbStart;

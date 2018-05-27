@@ -19,6 +19,14 @@ public class JavaToArduino {
 
     static SerialPort arduino;
 
+    public static void controlTSP(ArrayList<Product> tspvolgorde) {
+
+    }
+
+    public static void controlBPP(ArrayList<Bin> bins) {
+
+    }
+
     public static void main(String[] args) {
         //testwaarden
         Point point1 = new Point(0, 2);

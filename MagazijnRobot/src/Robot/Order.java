@@ -40,14 +40,24 @@ public class Order {
         return products;
     }
 
-    public String printProducts() {
+    public String printProductPositions() {
         String output = "";
         for (Product p : products) {
             output += p.getProduct_id();
-            output += ". Coördinaten= ";
+            output += ". Coördinaten = ";
             output += p.printCoordinates();
             output += "\n";
-            //System.out.println(output);
+        }
+        return output;
+    }
+
+    public String printProductSizes() {
+        String output = "";
+        for (Product p : products) {
+            output += p.getProduct_id();
+            output += ". Formaat = ";
+            output += p.printSize();
+            output += "\n";
         }
         return output;
     }

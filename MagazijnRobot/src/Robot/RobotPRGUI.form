@@ -56,8 +56,8 @@
                       </Group>
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="bpppanel" max="32767" attributes="0"/>
                           <Component id="tsppanel" max="32767" attributes="0"/>
+                          <Component id="bpppanel" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -71,7 +71,7 @@
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <Component id="jtaConsole" min="-2" pref="601" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jbLaadorder" min="-2" max="-2" attributes="0"/>
@@ -79,7 +79,7 @@
                       <Component id="jbStart" min="-2" pref="70" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <Component id="bpppanel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="tsppanel" min="-2" max="-2" attributes="0"/>
@@ -120,9 +120,10 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Container class="javax.swing.JPanel" name="bpppanel">
+    <Container class="Robot.TSPPanel" name="tsppanel">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="null; BPPPanel bpppanel = new BPPPanel();"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new Robot.TSPPanel()"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="tsppanel.setExec(exec);"/>
       </AuxValues>
 
       <Layout>
@@ -133,15 +134,14 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="256" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="550" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
     </Container>
-    <Container class="Robot.TSPPanel" name="tsppanel">
+    <Container class="Robot.BPPPanel" name="bpppanel">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new Robot.TSPPanel()"/>
-        <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="tsppanel.setExec(exec);"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="bpppanel.setExec(exec);"/>
       </AuxValues>
 
       <Layout>
@@ -152,7 +152,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="618" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="324" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>

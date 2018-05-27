@@ -38,6 +38,10 @@ public class Product {
         return "x = " + getProductX() + "  y = " + getProductY();
     }
 
+    public String printSize() {
+        return Integer.toString(product_size);
+    }
+
     public int getProduct_id() {
         return product_id;
     }

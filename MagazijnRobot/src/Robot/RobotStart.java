@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class RobotStart {
 
     private ArrayList<Product> productsR = new ArrayList<>();
-    private ArrayList<Product> productsB = new ArrayList<>();
+    //private ArrayList<Product> productsB = new ArrayList<>();
     private ArrayList<Product> TSPvolgorde = new ArrayList<>();
     private ArrayList<Product> BPPvolgorde = new ArrayList<>();
     private ArrayList<Bin> bins = new ArrayList<>();
@@ -25,23 +25,26 @@ public class RobotStart {
 
     public String stap1() {
         productsR = orderFileC.getProducts();
-        return orderFileC.printProducts();
+        return "Posities in magazijnstelling:\n" + orderFileC.printProductPositions();
     }
 
-//    public void stap2() {
-//        try {
-//            productsR = XMLorderDOM.orderFile.getProducts();
-//            System.out.print("gelukt products array aanmaken = ");
-//            System.out.println(productsR);
-//            //TSPPanel.repaint();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-//    public void stap3() {
-//        TSPvolgorde = NearestNeighbor.solveTSP(productsR);
-//        System.out.println("De TSPvolgorde = " + TSPvolgorde);
-//    }
+    public String stap2() {
+        productsR = orderFileC.getProducts();
+        return "Formaat van artikelen:\n" + orderFileC.printProductSizes();
+    }
+
+    public ArrayList<Product> setTSP(ArrayList<Product> products) {
+        NearestNeighbor nn = new NearestNeighbor();
+        TSPvolgorde = nn.solveTSP(products);
+        System.out.println("De TSPvolgorde = " + TSPvolgorde);
+        return TSPvolgorde;
+    }
+
+    public ArrayList<Bin> setBPP(ArrayList<Product> tspvolgorde) {
+        bins = EigenAlgoritmeBPP.solveBPP(tspvolgorde);
+        return bins;
+    }
+
     public static void main() {
 
         //RobotPRGUI.RFrame.addText(orderFileC.printProducts());
@@ -87,16 +90,16 @@ public class RobotStart {
         return productsR;
     }
 
-    public ArrayList<Product> getProductsB() {
-        return productsB;
-    }
-
     public ArrayList<Product> getTSPvolgorde() {
         return TSPvolgorde;
     }
 
     public ArrayList<Product> getBPPvolgorde() {
         return BPPvolgorde;
+    }
+
+    public ArrayList<Bin> getBins() {
+        return bins;
     }
 
     @Override

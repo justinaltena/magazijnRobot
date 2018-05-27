@@ -21,7 +21,7 @@ public class EigenAlgoritmeBPP {
 
     //Methode waar een ArrayList met producten ingaat,de producten inpakt, en daarna een ArrayList met bins terugstuurd
     public static ArrayList<Bin> solveBPP(ArrayList<Product> products) {
-        EigenAlgoritmeBPP.products = products;
+        EigenAlgoritmeBPP.products.addAll(products);
         //De inkomende ArrayList met producten wordt eerst in stukjes van 3 gehakt en daarna worden al die stukjes omgedraaid. Bij de functie meer info
         ArrayList<ArrayList<Product>> choppedProducts = chopped(EigenAlgoritmeBPP.products);
         ArrayList<Product> reversedProducts = reverseProducts(choppedProducts);

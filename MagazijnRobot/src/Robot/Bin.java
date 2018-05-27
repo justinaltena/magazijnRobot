@@ -31,6 +31,7 @@ public class Bin {
     }
 
     public ArrayList<Product> getProducts() {
+        // System.out.println("getProducts in Bin = " + this.products);
         return this.products;
     }
 
