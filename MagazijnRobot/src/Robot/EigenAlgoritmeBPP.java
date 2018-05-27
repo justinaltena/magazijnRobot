@@ -35,7 +35,7 @@ public class EigenAlgoritmeBPP {
         //Hierin staan alle producten die ingepakt zijn
         for (Product currentProduct : reversedProducts) {
             for (Bin currentBin : bins) {
-                if (currentProduct.getProductSize() <= currentBin.getAvailableSize()) {
+                if (currentProduct.getProduct_size() <= currentBin.getAvailableSize()) {
                     currentBin.addProduct(currentProduct);
                     packedProducts.add(currentProduct);
                     break;

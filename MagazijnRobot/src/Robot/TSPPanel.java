@@ -9,9 +9,15 @@ import javax.swing.JPanel;
 public class TSPPanel extends JPanel {
 
     private int prevProductX, prevProductY;
+    private ArrayList<Product> productsT = new ArrayList<>();
+    private RobotStart exec;
 
     public TSPPanel() {
+    }
 
+    public void setExec(RobotStart exec) {
+        this.exec = exec;
+//        System.out.println("exec in tsppanel = " + this.exec);
     }
 
     public void paintComponent(Graphics g) {
@@ -20,37 +26,40 @@ public class TSPPanel extends JPanel {
         g.setColor(Color.black);
         Graphics2D g2 = (Graphics2D) g;
         g2.setStroke(new BasicStroke(6));
-        //OMLIJNING
+        //OMLIJNING GRID
         g2.draw(new Rectangle2D.Float(10, 10, 810, 511));
-        //HORIZONTAAL
+        //HORIZONTALE LIJNEN GRID
         g2.draw(new Line2D.Float(10, 177, 820, 177));
         g2.draw(new Line2D.Float(10, 344, 820, 344));
-        //VERTICAAL
+        //VERTICALE LIJNEN GRID
         g2.draw(new Line2D.Float(170, 10, 170, 520));
         g2.draw(new Line2D.Float(330, 10, 330, 520));
         g2.draw(new Line2D.Float(490, 10, 490, 520));
         g2.draw(new Line2D.Float(650, 10, 650, 520));
-
+        //productsT = RobotStart.productsR;
         try {
-            System.out.println("Start van for-loop");
+//            System.out.print("Start van for-loop = ");
+//            System.out.println(exec.getProductsR());
             //TEKENEN PAKKETTEN NA LADEN ORDER
-            for (Product pd : RobotStart.products) {
-                int px = pd.getProductX();
-                int x = convertX(px);
-                int py = pd.getProductY();
-                int y = convertY(py);
-                drawProduct(g, x, y);
-                System.out.println("Gelukt Tekenen");
+            if (!exec.getProductsR().isEmpty()) {
+                for (Product pd : exec.getProductsR()) {
+                    int px = pd.getProductX();
+                    int x = convertX(px);
+                    int py = pd.getProductY();
+                    int y = convertY(py);
+                    drawProduct(g, x, y);
+                    System.out.println("Gelukt Tekenen");
+                }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (NullPointerException e) {
+            System.out.println("Kan niet repainten, array is leeg");
         }
 
-        for (Product pt : RobotStart.TSPvolgorde) {
-            int x = convertX(pt.getProductX());
-            int y = convertY(pt.getProductY());
-
-        }
+//        for (Product pt : exec.getTSPvolgorde()) {
+//            int x = convertX(pt.getProductX());
+//            int y = convertY(pt.getProductY());
+//
+//        }
     }
 
     public void drawProduct(Graphics g, float x, float y) {

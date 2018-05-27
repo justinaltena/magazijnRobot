@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class NearestNeighbor {
 
     //Methode waar een ArrayList met producten ingaat,de producten op de goede volgorde, en daarna een ArrayList met die producten terugstuurd
-    public static ArrayList<Product> solveTSP(ArrayList<Product> products) {
+    public ArrayList<Product> solveTSP(ArrayList<Product> products) {
         //Er wordt een nieuwe arraylist met producten aangemaakt waaraan het eerste product van de ingekomen arraylist wordt toegevoegd
         ArrayList<Product> route = new ArrayList<Product>() {
             {
@@ -14,20 +14,22 @@ public class NearestNeighbor {
             }
         };
         //Dat product wordt weer uit de oude arraylist gehaald
-        products.remove(0);
-
+        ArrayList<Product> productsN = new ArrayList<>();
+        productsN.addAll(products);
+        productsN.remove(0);
+        //System.out.println("eerste in NN = " + RobotPRGUI.productsR);
         //Zo lang de ingekomen lijst met producten niet leeg is wordt de code in deze while loop uitgevoerd
         while (true) {
             //Er wordt een variabele lastPoint aangemaakt die dezelfde waarde krijgt als het laatst toegevoegde product van route
             Product lastPoint = route.get(route.size() - 1);
             //Daarna wordt er weer een nieuw product aangemaakt die de waarde krijgt van het dichtsbijzijnde punt van het laatst toegevoegde punt aan de route
-            Product nearestProduct = getNearest(products, lastPoint);
+            Product nearestProduct = getNearest(productsN, lastPoint);
             //Dat product wordt dan weer toegevoegd aan de route en verwijderd uit de oude array met producten
             route.add(nearestProduct);
-            products.remove(nearestProduct);
-
+            productsN.remove(nearestProduct);
+            //System.out.println("Tweede in NN = " + RobotPRGUI.productsR);
             //Als er geen producten meer in de oude array zitten wordt de while loop beeindigd
-            if (products.size() <= 0) {
+            if (productsN.size() <= 0) {
                 break;
             }
         }
@@ -36,7 +38,7 @@ public class NearestNeighbor {
     }
 
     //Methode die het dichtsbijzijndste product weergeeft uit een arraylist met producten vergeleken met een meegegeven product
-    private static Product getNearest(ArrayList<Product> products, Product comparison) {
+    private Product getNearest(ArrayList<Product> products, Product comparison) {
         //Er wordt een double aangemaakt die de afstand tussen de producten bijhoudt, met startwaarde -1
         double lowestDistance = -1;
         Product closestProduct = new Product(new Point());
