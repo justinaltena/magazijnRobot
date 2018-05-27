@@ -64,15 +64,14 @@ public class JavaToArduino {
 //        System.out.println(bin1.getAvailableSize());
 //        double distance = point1.distance(point2);
 //        System.out.println("The distance between the points is " + distance);
-        ArrayList<Product> sortedProducts = NearestNeighbor.solveTSP(products);
-//       System.out.println(sortedProducts);
-        ArrayList<Bin> packedBins = EigenAlgoritmeBPP.solveBPP(sortedProducts);
-//        System.out.println(packedBins.size());
-//        System.out.println(packedBins);
-
-        String stringForArduino = new RobotControl().convertCoordinates(packedBins);
-//        System.out.println(stringForArduino);
-
+//        ArrayList<Product> sortedProducts = NearestNeighbor.solveTSP(products);
+////       System.out.println(sortedProducts);
+//        ArrayList<Bin> packedBins = EigenAlgoritmeBPP.solveBPP(sortedProducts);
+////        System.out.println(packedBins.size());
+////        System.out.println(packedBins);
+//
+//        String stringForArduino = new RobotControl().convertCoordinates(packedBins);
+////        System.out.println(stringForArduino);
         String comport = "com5";//Waarde van de poort invullen waar arduino op aangesloten wordt
         arduino = SerialPort.getCommPort(comport);
         arduino.setComPortTimeouts(SerialPort.TIMEOUT_SCANNER, 0, 0);
@@ -87,7 +86,7 @@ public class JavaToArduino {
                         OutputStream a = arduino.getOutputStream();
                         //System.out.println(stringForArduino);
                         //De String met voorbeeld getallen wordt hier in bytes gestuurd naar de arduino waar ze verder afgehandeld worden
-                        a.write(stringForArduino.getBytes());
+                        //a.write(stringForArduino.getBytes());
                         //Na het verzenden van het bericht wordt de outputstream schoongemaakt en de outputstream gesloten
                         a.flush();
                         a.close();

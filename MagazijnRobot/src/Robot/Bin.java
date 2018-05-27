@@ -30,8 +30,24 @@ public class Bin {
         }
     }
 
+    //De informatie die geprint gaat worden op de pakbon-dialoog
+    public String printPakbon() {
+        String output = "";
+        output += "Klantnummer: ";
+        output += Integer.toString(XMLorderDOM.orderFile.getCustomer_id()) + "<br>";
+        output += "Ordernummer: ";
+        output += Integer.toString(XMLorderDOM.orderFile.getOrder_id()) + "<br>";
+        output += "Orderdatum: ";
+        output += XMLorderDOM.orderFile.getOrder_date() + "<br><br>";
+        for (Product p : products) {
+            output += p.getProduct_id() + ". ";
+            output += p.getProduct_name() + "<br>";
+        }
+        output += "</html>";
+        return output;
+    }
+
     public ArrayList<Product> getProducts() {
-        // System.out.println("getProducts in Bin = " + this.products);
         return this.products;
     }
 

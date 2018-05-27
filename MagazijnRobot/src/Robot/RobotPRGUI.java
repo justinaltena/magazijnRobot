@@ -169,6 +169,13 @@ public class RobotPRGUI extends javax.swing.JFrame {
         String binSize = Integer.toString(exec.getBins().get(0).getBinSize());
         jtaConsole.append("Grootte van een bin = " + binSize + "\n");
 
+        //JavaToArduino.controlTSP(TSPvolgorde);
+        //JavaToArduino.controlBPP(BPPvolgorde);
+        for (int i = 0; i < BPPvolgorde.size(); i++) {
+            Bin b = BPPvolgorde.get(i);
+            new Pakbon(b, "Pakbon", i + 1);
+        }
+
         jbStart.setEnabled(false);
     }//GEN-LAST:event_jbStartActionPerformed
 
